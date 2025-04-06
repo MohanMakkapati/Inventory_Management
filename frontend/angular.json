@@ -27,11 +27,15 @@
               }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "outputMode": "server",
+            "ssr": {
+              "entry": "src/server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -97,6 +101,6 @@
     }
   },
   "cli": {
-    "analytics": "11933890-a599-49fe-af15-137047cb26ef"
+    "analytics": false
   }
 }
