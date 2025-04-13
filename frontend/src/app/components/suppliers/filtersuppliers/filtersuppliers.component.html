@@ -1,0 +1,131 @@
+<div class="page-wrapper">
+
+    <div class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+          <h2 class="nav-logo">StockSmart</h2>
+        </div>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/supplierspage" routerLinkActive="active">Supplier Management page</a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container">
+      <h1 class="page-heading">Filter Supplier</h1>
+      <div class="filter-container">
+        <!--for search by id-->
+        <div class="search-block">
+          <input
+            type="text"
+            placeholder="Enter Supplier ID"
+            [(ngModel)]="filterId"
+            (keydown.enter)="searchSupplierById()"
+          />
+          <button (click)="searchSupplierById()">Search by ID</button>
+        </div>
+        <!--for search by name-->
+        <div class="search-block">
+          <input
+            type="text"
+            placeholder="Enter Supplier Name"
+            [(ngModel)]="filterName"
+            (keydown.enter)="searchSupplierByName()"
+          />
+          <button (click)="searchSupplierByName()">Search by Name</button>
+        </div>
+        <!-- Unified Date Filter Dropdown -->
+        <div class="search-block">
+          <mat-form-field appearance="outline">
+            <mat-label>Filter by Date</mat-label>
+            <mat-select [(value)]="dateFilterType">
+              <mat-option value="specific">Specific Date</mat-option>
+              <mat-option value="range">Date Range</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Specific Date Picker -->
+          <div *ngIf="dateFilterType === 'specific'" class="date-picker-popup">
+            <mat-form-field appearance="outline">
+              <mat-label>Pick Date</mat-label>
+              <input matInput [matDatepicker]="picker1" [(ngModel)]="filterDate" />
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="searchSupplierByDate()">Search</button>
+          </div>
+
+          <!-- Date Range Picker -->
+          <div *ngIf="dateFilterType === 'range'" class="date-picker-popup">
+            <mat-form-field appearance="outline">
+              <mat-label>From</mat-label>
+              <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" />
+              <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>To</mat-label>
+              <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" />
+              <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!isDateRangeValid()" class="error-text">
+              "From" date cannot be after "To" date.
+            </div>
+            <button mat-raised-button color="primary" (click)="searchSupplierByDateRange()"[disabled]="!isDateRangeValid()">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="download-section" *ngIf="filteredSuppliers.length > 0">
+        <button (click)="confirmDownload()">📥Download</button>
+      </div>
+  
+      <div class="table-container">
+        <table class="supplier-table">
+          <thead>
+            <tr>
+              <th>Supplier ID</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Created On</th>
+              <th>Delete</th>
+              <th>Edit</th>
+              <th>Veiw Inventory</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let supplier of filteredSuppliers">
+              <td>{{ supplier.id }}</td>
+              <td>{{ supplier.name }}</td>
+              <td>{{ supplier.contact }}</td>
+              <td>{{ supplier.created_at | date: 'mediumDate' }}</td>
+              <td>
+                <button 
+                    *ngIf="supplier.id !== undefined" 
+                    mat-raised-button 
+                    color="warn" 
+                    (click)="confirmDelete(supplier.id)">
+                    Delete
+                </button>
+              </td>
+              <td>
+                <button mat-raised-button color="accent" (click)="openEditDialog(supplier)">
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button mat-raised-button color="accent" (click)="openInventoryDialog(supplier.id!)">View Inventory</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

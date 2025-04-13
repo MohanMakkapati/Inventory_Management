@@ -1,1 +1,65 @@
-<p>updateinventory works!</p>
+<div class="page-wrapper">
+
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+          <h1 class="nav-logo">StockSmart</h1>
+        </div>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/inventory/view" routerLinkActive="active">View Inventorylist</a>
+          <a routerLink="/inventorypage" routerLinkActive="active">Inventory Management Page</a>
+        </div>
+      </div>
+    </nav>
+  
+    <div class="container">
+      <h2>Update Inventory</h2>
+  
+      <form (ngSubmit)="onUpdate()" #form="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>ID</mat-label>
+          <input matInput type="number" name="id" [(ngModel)]="inventory.id" required />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput name="name" [(ngModel)]="inventory.name" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Category</mat-label>
+          <input matInput name="category" [(ngModel)]="inventory.category" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Quantity</mat-label>
+          <input matInput type="number" name="quantity" [(ngModel)]="inventory.quantity"  min="0" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Supplier ID (type 'null' if need to clear)</mat-label>
+          <input matInput type="text" name="supplier_id" [(ngModel)]="inventory.supplier_id" />
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit">Update Inventory</button>
+      </form>
+  
+      <p class="success" *ngIf="message">{{ message }}</p>
+  
+      <div *ngIf="updatedFields.length > 0" class="updated-details">
+        <h4>Fields Updated:</h4>
+        <ul>
+          <li *ngFor="let field of updatedFields">{{ field }}</li>
+        </ul>
+      </div>
+  
+      <p class="error" *ngIf="error">{{ error }}</p>
+  
+      <div class="footer">
+        <span>Powered by <strong>StockSmart</strong></span>
+      </div>
+    </div>
+  </div>
+  

@@ -1,4 +1,15 @@
 <div class="inventory-container">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+        <h1 class="nav-logo">StockSmart</h1>
+      </div>
+      <div class="nav-links">
+        <a routerLink="/" routerLinkActive="active">Goback Home</a>
+      </div>
+    </div>
+  </nav>
   <mat-card class="inventory-card">
     <h1>Inventory Management</h1>
     <p>Select an action:</p>
@@ -9,6 +20,10 @@
       <button mat-raised-button color="warn" routerLink="/inventory/delete">🗑️ Delete Item</button>
       <button mat-raised-button color="primary" routerLink="/inventory/view">📄 View All Items</button>
       <button mat-raised-button color="accent" routerLink="/inventory/filter">🔍 Filter Items</button>
+      <button mat-raised-button color="warm" routerLink="/inventory/issueinventory"> ➡️ Issue Inventory</button>
+      <button mat-raised-button color="warm" routerLink="/inventory/issuedlist"> 📦Issued List</button>
+      <button mat-raised-button color="warm" routerLink="/inventory/deletedinventory"> 🗑️ View Deleted Inventory</button>
+      <button mat-raised-button color="primary" routerLink="/inventory/viewdepartments"> 🏢 View Departments</button>
     </div>
 
     <div class="footer">

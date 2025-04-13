@@ -1,0 +1,43 @@
+<div class="page-wrapper">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+          <h1 class="nav-logo">StockSmart</h1>
+        </div>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/inventorypage" routerLinkActive="active">Inventory Management page</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h1 class="page-heading">Issued Inventory List</h1>
+        <div class="download-button-container">
+            <button (click)="confirmDownload()">
+              📥 Download CSV
+            </button>
+        </div>
+        <div class="table-container">
+          <table class="issued-table">
+            <thead>
+              <tr>
+                <th>issued ID</th>
+                <th>Inventory Id</th>
+                <th>Inventory Quantity</th>
+                <th>Department Id</th>
+                <th>Issued On</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of issuedInventory">
+                <td>{{ item.id }}</td>
+                <td>{{ item.inventory_id }}</td>
+                <td>{{ item.quantity_issued }}</td>
+                <td>{{ item.department_id }}</td>
+                <td>{{ item.issued_on | date: 'medium' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+</div>

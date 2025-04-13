@@ -1,7 +1,11 @@
 import express from 'express';
 import {
   getAllSuppliers,
-  getSupplierById,
+  SupplierById,
+  SuppliersByName,
+  SuppliersByDate, 
+  SuppliersByDateRange,
+  InventoryBySupplierId,
   createSupplier,
   updateSupplier,
   deleteSupplier
@@ -9,8 +13,13 @@ import {
 
 const router = express.Router();
 
+
 router.get('/suppliers', getAllSuppliers);
-router.get('/suppliers/:id', getSupplierById);
+router.get('/suppliers/:id(\\d+)',SupplierById);
+router.get('/suppliers/name/:name',SuppliersByName);
+router.get('/suppliers/date/:date', SuppliersByDate);
+router.get('/suppliers/daterange', SuppliersByDateRange);
+router.get('/suppliers/inventory/:supplierId',InventoryBySupplierId);
 router.post('/suppliers', createSupplier);
 router.put('/suppliers/:id', updateSupplier);
 router.delete('/suppliers/:id', deleteSupplier);

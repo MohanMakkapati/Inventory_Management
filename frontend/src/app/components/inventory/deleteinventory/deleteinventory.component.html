@@ -1,1 +1,41 @@
-<p>deleteinventory works!</p>
+<div class="page-wrapper">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+          <h1 class="nav-logo">StockSmart</h1>
+        </div>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/inventory/view" routerLinkActive="active">View Inventorylist</a>
+          <a routerLink="/inventorypage" routerLinkActive="active">Inventory Management Page</a>
+        </div>
+      </div>
+    </nav>
+  
+    <div class="container">
+      <h2>Delete Inventory Item</h2>
+  
+      <form (ngSubmit)="onDelete()" #deleteForm="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Inventory ID</mat-label>
+          <input matInput name="id" [(ngModel)]="inventoryId" required />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Deletion Description</mat-label>
+          <textarea matInput name="description" [(ngModel)]="description" required></textarea>
+        </mat-form-field>
+  
+        <button mat-raised-button color="warn" type="submit">Delete Inventory</button>
+      </form>
+  
+      <p class="success" *ngIf="message">{{ message }}</p>
+      <p class="error" *ngIf="error">{{ error }}</p>
+  
+      <div class="footer">
+        <span>Powered by <strong>StockSmart</strong></span>
+      </div>
+    </div>
+  </div>
+  

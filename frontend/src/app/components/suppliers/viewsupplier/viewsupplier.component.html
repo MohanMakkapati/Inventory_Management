@@ -1,1 +1,61 @@
-<p>viewsupplier works!</p>
+<div class="page-wrapper">
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+      <h1 class="nav-logo">StockSmart</h1>
+    </div>
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active">Home</a>
+      <a routerLink="/supplierspage" routerLinkActive="active">Supplier Management page</a>
+      <a routerLink="/suppliers/filter" routerLinkActive="active">Filter Page</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <h1 class="page-heading">Suppliers List</h1>
+    <div class="download-button-container">
+      <button mat-raised-button color="primary" (click)="confirmDownload()">
+        📥 Download CSV
+      </button>
+    </div>
+    <div class="table-container">
+      <table class="supplier-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>contact</th>
+            <th>Created At</th>
+            <th>Delete</th>
+            <th>Edit</th>
+            <th>Veiw Inventory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of suppliers">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.contact }}</td>
+            <td>{{ item.created_at | date }}</td>
+            <td>
+              <button mat-raised-button color="warn" (click)="confirmDelete(item.id!)">
+                Delete
+              </button>
+            </td>
+            <td>
+              <button mat-raised-button color="warn" (click)="openEditDialog(item)">
+                Edit
+              </button>
+            </td>
+            <td>
+              <button (click)="openInventoryDialog(item.id!)">View Inventory</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

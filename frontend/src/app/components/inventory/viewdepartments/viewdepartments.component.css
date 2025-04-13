@@ -1,0 +1,188 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: #000;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    padding-top: 59px;
+  }
+  
+  .navbar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 12px 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100vh;
+    margin: 0 auto;
+  }
+  
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+  }
+  
+  .logo-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .nav-logo {
+    font-size: 24px;
+      font-weight: bold;
+      color: #003049;
+      margin: 0;
+  }
+  
+  .nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: #0077b6;
+    text-decoration: underline;
+    border-bottom: 2px solid #0077b6;
+  }
+
+  .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; 
+    }
+    
+    .page-heading {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #003049;
+    }
+    
+    .download-button-container {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 10rem;
+      margin-bottom: 10px;
+    }
+  
+    .download-button-container button {
+      background: linear-gradient(to right, #00b658, #00d820);
+      color: white;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 10px 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
+    }
+    
+    .download-button-container button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #185407, #135607);
+    }
+  
+    .table-container {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .table-container thead th {
+      position: sticky;
+      top: 0;
+      background-color: #007bff; /* same as your current header */
+      color: white;
+      z-index: 2;
+    }
+  
+    .department-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #ddd;
+      table-layout: fixed; /* Ensures that columns will evenly distribute available space */
+    }
+    
+    .department-table th,
+    .department-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
+    
+    .department-table th {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    .department-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    .department-table tr:hover {
+      background-color: #f1f1f1;
+    }
+  
+    .department-table button {
+      padding: 8px 14px;
+      border-radius: 6px;
+      color: white;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(to right, #3f51b5, #5a5dd1);
+    }
+  
+    @media (max-width: 768px) {
+      .department-table th, .supplier-table td {
+        padding: 8px;
+        font-size: 0.875rem;
+      }
+    
+      .department-table {
+        font-size: 0.875rem;
+      }
+    
+      .department-table th {
+        font-size: 1rem;
+      }
+    }

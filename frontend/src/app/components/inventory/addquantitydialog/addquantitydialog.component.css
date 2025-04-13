@@ -1,0 +1,28 @@
+.dialog-container {
+  padding: 10px;
+  max-height: none !important; 
+  overflow: hidden !important;
+}
+
+.dialog-title {
+  margin-bottom: 0;
+  text-align: center;
+  background-color: blue;
+}
+
+.dialog-content {
+  margin-top: 10px;
+  max-height: unset;
+  overflow: hidden;
+  padding-bottom: 10px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.dialog-actions {
+  margin-top: 10px;
+}
+
+.full-width {
+  width: 100%;
+}

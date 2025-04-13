@@ -1,4 +1,15 @@
 <div class="supplier-container">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+        <h1 class="nav-logo">StockSmart</h1>
+      </div>
+      <div class="nav-links">
+        <a routerLink="/" routerLinkActive="active">Goback Home</a>
+      </div>
+    </div>
+  </nav>
     <mat-card class="supplier-card">
       <h1>Supplier Management</h1>
       <p>Select an action:</p>
@@ -8,6 +19,7 @@
         <button mat-raised-button color="accent" routerLink="/suppliers/update">✏️ Update Supplier</button>
         <button mat-raised-button color="warn" routerLink="/suppliers/delete">🗑️ Delete Supplier</button>
         <button mat-raised-button color="primary" routerLink="/suppliers/view">📄 View All Suppliers</button>
+        <button mat-raised-button color="accent" routerLink="/suppliers/filter">🔍 Filter Suppliers</button>
       </div>
   
       <div class="footer">

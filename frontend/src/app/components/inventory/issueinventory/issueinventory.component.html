@@ -1,0 +1,56 @@
+<div class="page-wrapper">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+          <h1 class="nav-logo">StockSmart</h1>
+        </div>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/inventorypage" routerLinkActive="active">Inventory Management Page</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h2>Issue Inventory Item</h2>
+        <form (ngSubmit)="issueinventory()" #issueForm="ngForm">
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Inventory ID</mat-label>
+            <input matInput name="inventoryid" [(ngModel)]="inventoryId" required #invId="ngModel" />
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Department</mat-label>
+            <mat-select
+              name="departmentId"
+              [(ngModel)]="departmentId"
+              required>
+              <mat-option *ngFor="let dept of departments" [value]="dept.id">
+                {{ dept.id }} - {{ dept.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Quantity</mat-label>
+            <input
+              matInput
+              type="number"
+              name="quantity"
+              [(ngModel)]="quantity"
+              required
+              min="1"
+              #qty="ngModel"
+            />
+          </mat-form-field>
+          
+          <button mat-raised-button color="warn" type="submit" [disabled]="issueForm.invalid">Issue Inventory</button>
+        </form>
+        <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <div class="footer">
+          <span>Powered by <strong>StockSmart</strong></span>
+        </div>
+    </div>
+</div>

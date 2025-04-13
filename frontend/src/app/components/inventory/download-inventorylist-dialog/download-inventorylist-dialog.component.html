@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Confirm Download</h2>
+    <mat-dialog-content>
+    <p>you sure you want to download the list as CSV?</p> 
+    <mat-checkbox [(ngModel)]="withSuppliers">Include Supplier Details</mat-checkbox>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="onCancel()">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button color="primary" (click)="onConfirm()">Download</button>
+    </mat-dialog-actions>

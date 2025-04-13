@@ -1,0 +1,14 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title class="dialog-title">Add Quantity</h2>
+  <div mat-dialog-content class="dialog-content">
+    <p>Enter quantity to add for item ID: <strong>{{ data.itemId }}</strong></p>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Quantity</mat-label>
+      <input matInput type="number" [(ngModel)]="quantityToAdd" min="1" />
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onAdd()">Add</button>
+  </div>
+</div>

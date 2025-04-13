@@ -1,1 +1,37 @@
-<p>deletesupplier works!</p>
+<div class="page-wrapper">
+     
+     <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+          <h1 class="nav-logo">StockSmart</h1>
+        </div>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/suppliers/view" routerLinkActive="active">View SuppliersList</a>
+          <a routerLink="/supplierspage" routerLinkActive="active">Supplier Management page</a>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container">
+      <h2>Delete Supplier</h2>
+  
+      <form (ngSubmit)="onDelete()" #deleteForm="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Supplier ID</mat-label>
+          <input matInput name="id" [(ngModel)]="supplierId" required />
+        </mat-form-field>
+  
+        <button mat-raised-button color="warn" type="submit">Delete Supplier</button>
+      </form>
+  
+      <p class="success" *ngIf="message">{{ message }}</p>
+      <p class="error" *ngIf="error">{{ error }}</p>
+  
+      <div class="footer">
+        <span>Powered by <strong>StockSmart</strong></span>
+      </div>
+    </div>
+  </div>
+  

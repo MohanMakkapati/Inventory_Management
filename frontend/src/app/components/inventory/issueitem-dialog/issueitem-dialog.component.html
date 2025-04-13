@@ -1,0 +1,27 @@
+<div class="dialog-controller">
+    <h2 mat-dialog-title class="dialog-title">Edit Inventory Item - ID: {{ data.inventoryId }}</h2>
+    <div mat-dialog-content class="dialog-content">
+        <form #issueForm="ngForm" (ngSubmit)="issue(issueForm)" class="dialog-form">
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Department</mat-label>
+                <mat-select [(ngModel)]="departmentId" name="departmentId" required>
+                  <mat-option *ngFor="let dept of departments" [value]="dept.id">
+                    {{ dept.id }}, {{ dept.name }}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Quantity</mat-label>
+                <input matInput type="number" [(ngModel)]="quantity" name="quantity" required min="1" />
+            </mat-form-field>
+
+            <div mat-dialog-actions align="end">
+                <button mat-button type="button" (click)="onCancel()">Cancel</button>
+                <button mat-raised-button color="primary" type="submit">issue</button>
+            </div>
+            
+        </form>
+    </div>
+</div>

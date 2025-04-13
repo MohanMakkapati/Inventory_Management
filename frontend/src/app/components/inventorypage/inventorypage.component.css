@@ -9,6 +9,67 @@
   background-repeat: no-repeat;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 12px 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 100vh;
+margin: 0 auto;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.nav-logo {
+  font-size: 24px;
+    font-weight: bold;
+    color: #003049;
+    margin: 0;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #0077b6;
+  text-decoration: underline;
+  border-bottom: 2px solid #0077b6;
+}
+
 .inventory-card {
   padding: 2rem;
   width: 100%;
@@ -37,5 +98,5 @@ button {
 }
 
 .footer strong {
-  color: black; /* Color for the 'StockSmart' text */
+  color: #555;
 }

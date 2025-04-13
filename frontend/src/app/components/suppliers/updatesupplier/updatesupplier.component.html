@@ -1,1 +1,55 @@
-<p>updatesupplier works!</p>
+<div class="page-wrapper">
+
+     <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+          <h1 class="nav-logo">StockSmart</h1>
+        </div>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/suppliers/view" routerLinkActive="active">View SuppliersList</a>
+          <a routerLink="/supplierspage" routerLinkActive="active">Supplier Management page</a>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container">
+      <h2>Update Supplier</h2>
+  
+      <form (ngSubmit)="onUpdate()" #form="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>ID</mat-label>
+          <input matInput type="number" name="id" [(ngModel)]="supplier.id" required />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput name="name" [(ngModel)]="supplier.name" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contact</mat-label>
+          <input matInput name="contact" [(ngModel)]="supplier.contact" />
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit">Update Supplier</button>
+      </form>
+  
+      <p class="success" *ngIf="message">{{ message }}</p>
+  
+      <div *ngIf="updatedFields.length > 0" class="updated-details">
+        <h4>Fields Updated:</h4>
+        <ul>
+          <li *ngFor="let field of updatedFields">{{ field }}</li>
+        </ul>
+      </div>
+  
+      <p class="error" *ngIf="error">{{ error }}</p>
+  
+      <div class="footer">
+        <span>Powered by <strong>StockSmart</strong></span>
+      </div>
+    </div>
+  </div>
+  

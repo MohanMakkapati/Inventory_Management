@@ -1,1 +1,110 @@
-<p>filterinventory works!</p>
+<div class="page-wrapper">
+    <nav class="navbar">
+        <div class="nav-container">
+          <div class="nav-brand">
+            <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+            <h1 class="nav-logo">StockSmart</h1>
+          </div>
+          <div class="nav-links">
+            <a routerLink="/" routerLinkActive="active">Home</a>
+            <a routerLink="/inventorypage" routerLinkActive="active">Inventory Management page</a>
+          </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="page-heading"> Filter Inventory List</h1>
+
+        <div class="filter-container">
+            <mat-form-field appearance="outline">
+              <input matInput type="number" placeholder="Search by Inventory ID" [(ngModel)]="searchId" (keyup.enter)="applyFilter()">
+            </mat-form-field>
+          
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Search by Name" [(ngModel)]="searchName" (keyup.enter)="applyFilter()">
+            </mat-form-field>
+          
+            <mat-form-field appearance="outline">
+              <mat-label>Filter by Category</mat-label>
+              <mat-select [(ngModel)]="selectedCategory" (selectionChange)="applyFilter()">
+                <mat-option value="">All Categories</mat-option>
+                <mat-option *ngFor="let cat of allCategories" [value]="cat">{{ cat }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Stock Status</mat-label>
+                <mat-select [(ngModel)]="stockStatus" (selectionChange)="applyFilter()">
+                  <mat-option value="all">All</mat-option>
+                  <mat-option value="in">In Stock</mat-option>
+                  <mat-option value="out">Out of Stock</mat-option>
+                </mat-select>
+            </mat-form-field>
+          
+            <button mat-raised-button color="primary" (click)="applyFilter()">Apply Filters</button>
+          </div>
+
+        <div class="download-button-container">
+            <button mat-raised-button color="primary" (click)="confirmDownload()">
+                📥 Download CSV
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th>Quantity</th>
+                      <th>Supplier ID</th>
+                      <th>View Supplier details</th>
+                      <th>Created At</th>
+                      <th>Quantity Operations</th>
+                      <th>Edit Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of filteredInventory">
+                      <td>{{ item.id }}</td>
+                      <td>{{ item.name }}</td>
+                      <td>{{ item.category }}</td>
+                      <td>{{ item.quantity }}</td>
+                      <td>{{ item.supplier_id }}</td>
+                      <td>
+                        <div *ngIf="item.supplier_id && !expandedSupplier[item.id]">
+                          <button mat-button color="primary" (click)="toggleSupplierDetails(item)">View Supplier</button>
+                        </div>
+                        <div *ngIf="expandedSupplier[item.id]">
+                          <strong>Name:</strong> {{ expandedSupplier[item.id].name }}<br>
+                          <strong>Contact:</strong> {{ expandedSupplier[item.id].contact }}<br>
+                          <strong>Created On:</strong> {{ expandedSupplier[item.id].created_at | date }}
+                        </div>
+                      </td>
+                      <td>{{ item.created_at | date }}</td>
+                      <td class="operations">
+                      <div class="button-group ">
+                        <button mat-raised-button color="accent" (click)="onAddQuantity(item)">
+                          Add
+                        </button>
+                        <button mat-raised-button color="accent" (click)="openIssueDialog(item.id)">
+                          issue
+                        </button>
+                      </div>
+                      </td>
+                      <td class="operations">
+                      <div class="button-group ">
+                        <button mat-raised-button color="warn" (click)="openEditDialog(item.id)">
+                           Edit
+                        </button>
+                        <button mat-icon-button color="warn" (click)="openDeleteDialog(item.id)">
+                          delete
+                        </button>
+                      </div>
+                      </td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>
+    </div>
+</div>

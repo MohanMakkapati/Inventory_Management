@@ -1,1 +1,81 @@
-<p>viewinventory works!</p>
+<div class="page-wrapper">
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+      <h1 class="nav-logo">StockSmart</h1>
+    </div>
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active">Home</a>
+      <a routerLink="/inventorypage" routerLinkActive="active">Inventory Management page</a>
+      <a routerLink="/inventory/filter" routerLinkActive="active">Filter Page</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <h1 class="page-heading">Inventory List</h1>
+    <div class="download-button-container">
+      <button mat-raised-button color="primary" (click)="confirmDownload()">
+        📥 Download CSV
+      </button>
+    </div>
+    <div class="table-container">
+      <table class="inventory-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Supplier ID</th>
+            <th>View Supplier details</th>
+            <th>Created At</th>
+            <th>Quantity Operations</th>
+            <th>Edit Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of inventory">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.supplier_id }}</td>
+            <td>
+              <div *ngIf="item.supplier_id && !expandedSupplier[item.id]">
+                <button mat-button color="primary" (click)="toggleSupplierDetails(item)">View Supplier</button>
+              </div>
+              <div *ngIf="expandedSupplier[item.id]">
+                <strong>Name:</strong> {{ expandedSupplier[item.id].name }}<br>
+                <strong>Contact:</strong> {{ expandedSupplier[item.id].contact }}<br>
+                <strong>Created On:</strong> {{ expandedSupplier[item.id].created_at | date }}
+              </div>
+            </td>
+            <td>{{ item.created_at | date }}</td>
+            <td class="operations">
+            <div class="button-group ">
+              <button mat-raised-button color="accent" (click)="onAddQuantity(item)">
+                Add
+              </button>
+              <button mat-raised-button color="accent" (click)="openIssueDialog(item.id)">
+                issue
+              </button>
+            </div>
+            </td>
+            <td class="operations">
+            <div class="button-group ">
+              <button mat-raised-button color="warn" (click)="openEditDialog(item.id)">
+                 Edit
+              </button>
+              <button mat-icon-button color="warn" (click)="openDeleteDialog(item.id)">
+                delete
+              </button>
+            </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  

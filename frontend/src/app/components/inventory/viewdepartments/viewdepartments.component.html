@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <img src="favicon.jpeg" alt="Logo" class="logo-img" />
+          <h1 class="nav-logo">StockSmart</h1>
+        </div>
+        <div class="nav-links">
+          <a routerLink="/" routerLinkActive="active">Home</a>
+          <a routerLink="/inventorypage" routerLinkActive="active">Inventory Management page</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h1 class="page-heading">Departments List</h1>
+        <div class="download-button-container">
+            <button (click)="downloadCSV()">
+              📥 Download CSV
+            </button>
+        </div>
+        <div class="table-container">
+          <table class="department-table">
+            <thead>
+              <tr>
+                <th>Departments ID</th>
+                <th>Deparment Name</th>
+                <th>Head Name</th>
+                <th>Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of departments">
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.head_name }}</td>
+                <td>{{ item.contact }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+</div>
